@@ -28,17 +28,7 @@ const quizData = [
             d: { text: "Ziemlich", points: 4 },
             e: { text: "Sehr", points: 5 }
         }
-    },
-    {
-        question: "Magst du es mit Kindern zu Arbeiten",
-        answers: {
-            a: { text: "Gar nicht", points: 1 },
-            b: { text: "Nicht wirklich", points: 2 },
-            c: { text: "Ein bisschen", points: 3 },
-            d: { text: "Ziemlich", points: 4 },
-            e: { text: "Sehr", points: 5 }
-        }
-    },
+    }
     // Weitere Fragen können hier hinzugefügt werden
 ];
 
@@ -46,40 +36,55 @@ const quizContainer = document.getElementById('quiz');
 const resultsContainer = document.getElementById('results');
 const submitButton = document.getElementById('submit');
 
+let currentQuestion = 0;
+let totalPoints = 0;
+
 function buildQuiz() {
+    const currentQuizData = quizData[currentQuestion];
+
     const output = [];
+    const answers = [];
 
-    quizData.forEach((currentQuestion, questionNumber) => {
-        const answers = [];
-
-        for (const letter in currentQuestion.answers) {
-            answers.push(
-                `<label>
-                    <input type="radio" name="question${questionNumber}" value="${letter}">
-                    ${letter} :
-                    ${currentQuestion.answers[letter].text}
-                </label>`
-            );
-        }
-
-        output.push(
-            `<div class="question"> ${currentQuestion.question} </div>
-            <div class="answers"> ${answers.join('')} </div>`
+    for (const letter in currentQuizData.answers) {
+        answers.push(
+            `<label>
+                <input type="radio" name="question" value="${letter}">
+                ${letter} :
+                ${currentQuizData.answers[letter].text}
+            </label>`
         );
-    });
+    }
+
+    output.push(
+        `<div class="question"> ${currentQuizData.question} </div>
+        <div class="answers"> ${answers.join('')} </div>`
+    );
 
     quizContainer.innerHTML = output.join('');
 }
 
+function showNextQuestion() {
+    const answerContainer = quizContainer.querySelector('.answers');
+    const selector = `input[name=question]:checked`;
+
+    if (!answerContainer.querySelector(selector)) {
+        alert("Bitte wähle eine Antwort aus.");
+        return;
+    }
+
+    const userAnswer = answerContainer.querySelector(selector).value;
+    totalPoints += quizData[currentQuestion].answers[userAnswer].points;
+
+    currentQuestion++;
+
+    if (currentQuestion < quizData.length) {
+        buildQuiz();
+    } else {
+        showResults();
+    }
+}
+
 function showResults() {
-    let totalPoints = 0;
-
-    quizData.forEach((currentQuestion, questionNumber) => {
-        const selector = `input[name=question${questionNumber}]:checked`;
-        const userAnswer = document.querySelector(selector).value;
-        totalPoints += currentQuestion.answers[userAnswer].points;
-    });
-
     let job = "Unbekannt";
 
     if (totalPoints >= 1 && totalPoints <= 10) {
@@ -100,4 +105,4 @@ function showResults() {
 
 buildQuiz();
 
-submitButton.addEventListener('click', showResults);
+submitButton.addEventListener('click', showNextQuestion);
