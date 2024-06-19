@@ -2,8 +2,8 @@ const quizData = [
     {
         question: "Vous aimez les sports en plein air?",
         answers: {
-            a: { text: "Je déteste", points: 1 },
-            b: { text: "Je ne l'aime pas", points: 2 },
+            a: { text: "Je déteste", points: 2 },
+            b: { text: "Je ne l'aime pas", points: 1 },
             c: { text: "Je suis neutre", points: 3 },
             d: { text: "Je l'aime", points: 4 },
             e: { text: "Je l'adore", points: 5 }
@@ -12,39 +12,39 @@ const quizData = [
     {
         question: "Vous aimez jouer en équipe?",
         answers: {
-            a: { text: "Je déteste", points: 1 },
+            a: { text: "Je déteste", points: 5 },
             b: { text: "Je ne l'aime pas", points: 2 },
-            c: { text: "Je suis neutre", points: 3 },
-            d: { text: "Je l'aime", points: 4 },
-            e: { text: "Je l'adore", points: 5 }
+            c: { text: "Je suis neutre", points: 1 },
+            d: { text: "Je l'aime", points: 3 },
+            e: { text: "Je l'adore", points: 4}
         }
     },
     {
         question: "Vous aimez jouer avec des balles?",
         answers: {
-            a: { text: "Je déteste", points: 1 },
+            a: { text: "Je déteste", points: 5 },
             b: { text: "Je ne l'aime pas", points: 2 },
             c: { text: "Je suis neutre", points: 3 },
-            d: { text: "Je l'aime", points: 4 },
-            e: { text: "Je l'adore", points: 5 }
+            d: { text: "Je l'aime", points: 1 },
+            e: { text: "Je l'adore", points: 4 }
         }
     },
     {
         question: "Vous aimez les sports intenses?",
         answers: {
-            a: { text: "Je déteste", points: 1 },
-            b: { text: "Je ne l'aime pas", points: 2 },
-            c: { text: "Je suis neutre", points: 3 },
-            d: { text: "Je l'aime", points: 4 },
-            e: { text: "Je l'adore", points: 5 }
+            a: { text: "Je déteste", points: 3 },
+            b: { text: "Je ne l'aime pas", points: 1 },
+            c: { text: "Je suis neutre", points: 5 },
+            d: { text: "Je l'aime", points: 2 },
+            e: { text: "Je l'adore", points: 4 }
         }
     },
     {
         question: "Est-ce que vous êtes sportif?",
         answers: {
-            a: { text: "Non", points: 1 },
-            b: { text: "Un peu", points: 2 },
-            c: { text: "Oui", points: 3 }
+            a: { text: "Non", points: 3 },
+            b: { text: "Un peu", points: 5 },
+            c: { text: "Oui", points: 4 }
         }
     }
 ];
@@ -112,7 +112,8 @@ function showResults() {
         sport = "Volley";
     } else if (totalPoints >= 16 && totalPoints <= 20) {
         sport = "Football";
-    }
+    } else if (totalPoints >= 21 && totalPoints <= 25) {
+        sport = "courir";
 
     resultsContainer.innerHTML = `Votre sport est ${sport}.`;
 }
