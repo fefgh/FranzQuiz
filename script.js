@@ -1,50 +1,32 @@
 const quizData = [
     {
-        question: "Vous aimez les sport au plen air",
+        question: "Wie gerne arbeitest du im Freien?",
         answers: {
-            a: { text: "je déteste", points: 1 },
-            b: { text: "je ne l'aime pas", points: 2 },
-            c: { text: "je suis neutre ", points: 3 },
-            d: { text: "je l'aime", points: 4 },
-            e: { text: "je l'adore ", points: 5 }
+            a: { text: "Gar nicht gerne", points: 1 },
+            b: { text: "Nicht so gerne", points: 2 },
+            c: { text: "Eher neutral", points: 3 },
+            d: { text: "Gerne", points: 4 },
+            e: { text: "Sehr gerne", points: 5 }
         }
     },
     {
-        question: "Vous aimez jouer en équipe",
+        question: "Wie gut bist du im Umgang mit Zahlen?",
         answers: {
-            a: { text: "je déteste", points: 1 },
-            b: { text: "je ne l'aime pas", points: 2 },
-            c: { text: "je suis neutre", points: 3 },
-            d: { text: "je l'aime", points: 4 },
-            e: { text: "je l'adore", points: 5 }
+            a: { text: "Sehr schlecht", points: 1 },
+            b: { text: "Nicht so gut", points: 2 },
+            c: { text: "Durchschnittlich", points: 3 },
+            d: { text: "Gut", points: 4 },
+            e: { text: "Sehr gut", points: 5 }
         }
     },
     {
-        question: "Vous aimez jouer avec des balles?",
+        question: "Bist du kreativ und handwerklich begabt?",
         answers: {
-            a: { text: "je déteste", points: 1 },
-            b: { text: "je ne l'aime pas", points: 2 },
-            c: { text: "je suis neutre ", points: 3 },
-            d: { text: "je l'aime", points: 4 },
-            e: { text: "je l'adore", points: 5 }
-        }
-    },
-        {
-        question: "Vous aimez les sports intenses?",
-        answers: {
-            a: { text: "je déteste", points: 1 },
-            b: { text: "je ne l'aime pas", points: 2 },
-            c: { text: "je suis neutre ", points: 3 },
-            d: { text: "je l'aime", points: 4 },
-            e: { text: "je l'adore", points: 5 }
-        }
-    },
-    {
-        question: "Est-ce que vous êtes sportif?",
-        answers: {
-            a: { text: "non", points: 1 },
-            b: { text: "un peu", points: 2 },
-            c: { text: "oui ", points: 3 },
+            a: { text: "Gar nicht", points: 1 },
+            b: { text: "Nicht wirklich", points: 2 },
+            c: { text: "Ein bisschen", points: 3 },
+            d: { text: "Ziemlich", points: 4 },
+            e: { text: "Sehr", points: 5 }
         }
     }
     // Weitere Fragen können hier hinzugefügt werden
@@ -105,19 +87,20 @@ function showNextQuestion() {
 function showResults() {
     let job = "Unbekannt";
 
-    if (totalPoints >= 1 && totalPoints <= 5) {
-        job = "Le Basket";
-    } else if (totalPoints >= 6 && totalPoints <= 10) {
-        job = "Le Badminton";
-    } else if (totalPoints >= 11 && totalPoints <= 15) {
-        job = "Le Volley";
-    } else if (totalPoints >= 16 && totalPoints <= 20) {
-        job = "Le B
-            Foot";
+    if (totalPoints >= 1 && totalPoints <= 10) {
+        job = "Friseur";
+    } else if (totalPoints >= 11 && totalPoints <= 20) {
+        job = "Bauarbeiter";
+    } else if (totalPoints >= 21 && totalPoints <= 30) {
+        job = "Verkäufer";
+    } else if (totalPoints >= 31 && totalPoints <= 40) {
+        job = "Ingenieur";
+    } else if (totalPoints >= 41 && totalPoints <= 50) {
+        job = "Lehrer";
     }
     // Weitere Jobkategorien können hier hinzugefügt werden
 
-    resultsContainer.innerHTML = `Votre Sport est ${job}.`;
+    resultsContainer.innerHTML = `Basierend auf deinen Antworten passt der Job ${job} am besten zu dir.`;
 }
 
 buildQuiz();
