@@ -113,7 +113,8 @@ function showResults() {
     } else if (totalPoints >= 16 && totalPoints <= 20) {
         sport = "Football";
     } else if (totalPoints >= 21 && totalPoints <= 25) {
-        sport = "courir";
+        sport = "Courir";
+    }
 
     resultsContainer.innerHTML = `Votre sport est ${sport}.`;
 }
