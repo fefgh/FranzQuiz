@@ -46,7 +46,7 @@ const quizData = [
             b: { text: "un peu", points: 2 },
             c: { text: "oui ", points: 3 },
         }
-    },
+    }
     // Weitere Fragen können hier hinzugefügt werden
 ];
 
