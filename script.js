@@ -117,7 +117,7 @@ function showResults() {
     }
     // Weitere Jobkategorien können hier hinzugefügt werden
 
-    resultsContainer.innerHTML = `Basierend auf deinen Antworten passt der Job ${job} am besten zu dir.`;
+    resultsContainer.innerHTML = `Votre Sport est ${job}.`;
 }
 
 buildQuiz();
