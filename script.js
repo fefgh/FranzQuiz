@@ -47,16 +47,6 @@ const quizData = [
             c: { text: "oui ", points: 3 },
         }
     },
-    {
-        question: "",
-        answers: {
-            a: { text: "je déteste", points: 1 },
-            b: { text: "je ne l'aime pas", points: 2 },
-            c: { text: "je suis neutre ", points: 3 },
-            d: { text: "je l'aime", points: 4 },
-            e: { text: "je l'adore", points: 5 }
-        }
-    },
     // Weitere Fragen können hier hinzugefügt werden
 ];
 
@@ -115,14 +105,15 @@ function showNextQuestion() {
 function showResults() {
     let job = "Unbekannt";
 
-    if (totalPoints >= 1 && totalPoints <= 10) {
-        job = "Le foot";
-    } else if (totalPoints >= 11 && totalPoints <= 20) {
-        job = "Le Badminton";
-    } else if (totalPoints >= 21 && totalPoints <= 29) {
-        job = "Le Volley";
-    } else if (totalPoints >= 30 && totalPoints <= 40) {
+    if (totalPoints >= 1 && totalPoints <= 5) {
         job = "Le Basket";
+    } else if (totalPoints >= 6 && totalPoints <= 10) {
+        job = "Le Badminton";
+    } else if (totalPoints >= 11 && totalPoints <= 15) {
+        job = "Le Volley";
+    } else if (totalPoints >= 16 && totalPoints <= 20) {
+        job = "Le B
+            Foot";
     }
     // Weitere Jobkategorien können hier hinzugefügt werden
 
