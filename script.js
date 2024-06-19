@@ -1,53 +1,52 @@
 const quizData = [
     {
-        question: "Vous aimez les sport au plen air",
+        question: "Vous aimez les sports en plein air?",
         answers: {
-            a: { text: "je déteste", points: 1 },
-            b: { text: "je ne l'aime pas", points: 2 },
-            c: { text: "je suis neutre ", points: 3 },
-            d: { text: "je l'aime", points: 4 },
-            e: { text: "je l'adore ", points: 5 }
+            a: { text: "Je déteste", points: 1 },
+            b: { text: "Je ne l'aime pas", points: 2 },
+            c: { text: "Je suis neutre", points: 3 },
+            d: { text: "Je l'aime", points: 4 },
+            e: { text: "Je l'adore", points: 5 }
         }
     },
     {
-        question: "Vous aimez jouer en équipe",
+        question: "Vous aimez jouer en équipe?",
         answers: {
-            a: { text: "je déteste", points: 1 },
-            b: { text: "je ne l'aime pas", points: 2 },
-            c: { text: "je suis neutre", points: 3 },
-            d: { text: "je l'aime", points: 4 },
-            e: { text: "je l'adore", points: 5 }
+            a: { text: "Je déteste", points: 1 },
+            b: { text: "Je ne l'aime pas", points: 2 },
+            c: { text: "Je suis neutre", points: 3 },
+            d: { text: "Je l'aime", points: 4 },
+            e: { text: "Je l'adore", points: 5 }
         }
     },
     {
         question: "Vous aimez jouer avec des balles?",
         answers: {
-            a: { text: "je déteste", points: 1 },
-            b: { text: "je ne l'aime pas", points: 2 },
-            c: { text: "je suis neutre ", points: 3 },
-            d: { text: "je l'aime", points: 4 },
-            e: { text: "je l'adore", points: 5 }
+            a: { text: "Je déteste", points: 1 },
+            b: { text: "Je ne l'aime pas", points: 2 },
+            c: { text: "Je suis neutre", points: 3 },
+            d: { text: "Je l'aime", points: 4 },
+            e: { text: "Je l'adore", points: 5 }
         }
     },
-        {
+    {
         question: "Vous aimez les sports intenses?",
         answers: {
-            a: { text: "je déteste", points: 1 },
-            b: { text: "je ne l'aime pas", points: 2 },
-            c: { text: "je suis neutre ", points: 3 },
-            d: { text: "je l'aime", points: 4 },
-            e: { text: "je l'adore", points: 5 }
+            a: { text: "Je déteste", points: 1 },
+            b: { text: "Je ne l'aime pas", points: 2 },
+            c: { text: "Je suis neutre", points: 3 },
+            d: { text: "Je l'aime", points: 4 },
+            e: { text: "Je l'adore", points: 5 }
         }
     },
     {
         question: "Est-ce que vous êtes sportif?",
         answers: {
-            a: { text: "non", points: 1 },
-            b: { text: "un peu", points: 2 },
-            c: { text: "oui ", points: 3 },
+            a: { text: "Non", points: 1 },
+            b: { text: "Un peu", points: 2 },
+            c: { text: "Oui", points: 3 }
         }
     }
-    // Weitere Fragen können hier hinzugefügt werden
 ];
 
 const quizContainer = document.getElementById('quiz');
@@ -86,7 +85,7 @@ function showNextQuestion() {
     const selector = `input[name=question]:checked`;
 
     if (!answerContainer.querySelector(selector)) {
-        alert("Bitte wähle eine Antwort aus.");
+        alert("Veuillez sélectionner une réponse.");
         return;
     }
 
@@ -103,21 +102,19 @@ function showNextQuestion() {
 }
 
 function showResults() {
-    let job = "Unbekannt";
+    let sport = "Inconnu";
 
     if (totalPoints >= 1 && totalPoints <= 5) {
-        job = "Le Basket";
+        sport = "Basket";
     } else if (totalPoints >= 6 && totalPoints <= 10) {
-        job = "Le Badminton";
+        sport = "Badminton";
     } else if (totalPoints >= 11 && totalPoints <= 15) {
-        job = "Le Volley";
+        sport = "Volley";
     } else if (totalPoints >= 16 && totalPoints <= 20) {
-        job = "Le B
-            Foot";
+        sport = "Football";
     }
-    // Weitere Jobkategorien können hier hinzugefügt werden
 
-    resultsContainer.innerHTML = `Votre Sport est ${job}.`;
+    resultsContainer.innerHTML = `Votre sport est ${sport}.`;
 }
 
 buildQuiz();
