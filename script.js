@@ -2,49 +2,49 @@ const quizData = [
     {
         question: "Vous aimez les sports en plein air?",
         answers: {
-            a: { text: "Je déteste", points: 2 },
-            b: { text: "Je ne l'aime pas", points: 1 },
-            c: { text: "Je suis neutre", points: 3 },
-            d: { text: "Je l'aime", points: 4 },
-            e: { text: "Je l'adore", points: 5 }
+            a: { text: "Je déteste", points: { foot: 2, basket: 4, volley: 3, badminton: 5, courir: 1 } },
+            b: { text: "Je ne l'aime pas", points: { foot: 2, basket: 5, volley: 3, badminton: 4, courir: 1 } },
+            c: { text: "Je suis neutre", points: { foot: 3, basket: 3, volley: 5, badminton: 2, courir: 2 } },
+            d: { text: "Je l'aime", points: { foot: 5, basket: 3, volley: 4, badminton: 1, courir: 4 } },
+            e: { text: "Je l'adore", points: { foot: 4, basket: 2, volley: 3, badminton: 0, courir: 5 } }
         }
     },
     {
         question: "Vous aimez jouer en équipe?",
         answers: {
-            a: { text: "Je déteste", points: 5 },
-            b: { text: "Je ne l'aime pas", points: 2 },
-            c: { text: "Je suis neutre", points: 1 },
-            d: { text: "Je l'aime", points: 3 },
-            e: { text: "Je l'adore", points: 4}
+            a: { text: "Je déteste", points: { foot: 0, basket: 1, volley: 1, badminton: 3, courir: 5 } },
+            b: { text: "Je ne l'aime pas", points: { foot: 1, basket: 2, volley: 1, badminton: 2, courir: 4 } },
+            c: { text: "Je suis neutre", points: { foot: 2, basket: 2, volley: 3, badminton: 5, courir: 2 } },
+            d: { text: "Je l'aime", points: { foot: 4, basket: 4, volley: 5, badminton: 3, courir: 1 } },
+            e: { text: "Je l'adore", points: { foot: 5, basket: 2, volley: 4, badminton: 3, courir: 0 } }
         }
     },
     {
         question: "Vous aimez jouer avec des balles?",
         answers: {
-            a: { text: "Je déteste", points: 5 },
-            b: { text: "Je ne l'aime pas", points: 2 },
-            c: { text: "Je suis neutre", points: 3 },
-            d: { text: "Je l'aime", points: 1 },
-            e: { text: "Je l'adore", points: 4 }
+            a: { text: "Je déteste", points: { foot: 1, basket: 1, volley: 1, badminton: 1, courir: 5 } },
+            b: { text: "Je ne l'aime pas", points: { foot: 2, basket: 2, volley: 2, badminton: 2, courir: 3 } },
+            c: { text: "Je suis neutre", points: { foot: 3, basket: 3, volley: 3, badminton: 3, courir: 2 } },
+            d: { text: "Je l'aime", points: { foot: 4, basket: 4, volley: 4, badminton: 4, courir: 0 } },
+            e: { text: "Je l'adore", points: { foot: 5, basket: 5, volley: 5, badminton: 5, courir: 0 } }
         }
     },
     {
         question: "Vous aimez les sports intenses?",
         answers: {
-            a: { text: "Je déteste", points: 3 },
-            b: { text: "Je ne l'aime pas", points: 1 },
-            c: { text: "Je suis neutre", points: 5 },
-            d: { text: "Je l'aime", points: 2 },
-            e: { text: "Je l'adore", points: 4 }
+            a: { text: "Je déteste", points: { foot: 1, basket: 1, volley: 1, badminton: 2, courir: 0 } },
+            b: { text: "Je ne l'aime pas", points: { foot: 1, basket: 2, volley: 1, badminton: 2, courir: 1 } },
+            c: { text: "Je suis neutre", points: { foot: 3, basket: 4, volley: 4, badminton: 4, courir: 3 } },
+            d: { text: "Je l'aime", points: { foot: 5, basket: 2, volley: 3, badminton: 4, courir: 4 } },
+            e: { text: "Je l'adore", points: { foot: 4, basket: 3, volley: 3, badminton: 4, courir: 5 } }
         }
     },
     {
         question: "Est-ce que vous êtes sportif?",
         answers: {
-            a: { text: "Non", points: 3 },
-            b: { text: "Un peu", points: 5 },
-            c: { text: "Oui", points: 4 }
+            a: { text: "Non", points: { foot: 1, basket: 1, volley: 4, badminton: 2, courir: 3 } },
+            b: { text: "Un peu", points: { foot: 3, basket: 2, volley: 3, badminton: 4, courir: 4 } },
+            c: { text: "Oui", points: { foot: 5, basket: 5, volley: 5, badminton: 5, courir: 5 } }
         }
     }
 ];
@@ -54,7 +54,7 @@ const resultsContainer = document.getElementById('results');
 const submitButton = document.getElementById('submit');
 
 let currentQuestion = 0;
-let totalPoints = 0;
+let totalPoints = { foot: 0, basket: 0, volley: 0, badminton: 0, courir: 0 };
 
 function buildQuiz() {
     const currentQuizData = quizData[currentQuestion];
@@ -90,7 +90,11 @@ function showNextQuestion() {
     }
 
     const userAnswer = answerContainer.querySelector(selector).value;
-    totalPoints += quizData[currentQuestion].answers[userAnswer].points;
+    const points = quizData[currentQuestion].answers[userAnswer].points;
+
+    for (const sport in points) {
+        totalPoints[sport] += points[sport];
+    }
 
     currentQuestion++;
 
@@ -102,21 +106,17 @@ function showNextQuestion() {
 }
 
 function showResults() {
-    let sport = "Inconnu";
+    let maxPoints = 0;
+    let chosenSport = "Inconnu";
 
-    if (totalPoints >= 1 && totalPoints <= 5) {
-        sport = "Basket";
-    } else if (totalPoints >= 6 && totalPoints <= 10) {
-        sport = "Badminton";
-    } else if (totalPoints >= 11 && totalPoints <= 15) {
-        sport = "Volley";
-    } else if (totalPoints >= 16 && totalPoints <= 20) {
-        sport = "Football";
-    } else if (totalPoints >= 21 && totalPoints <= 25) {
-        sport = "Courir";
+    for (const sport in totalPoints) {
+        if (totalPoints[sport] > maxPoints) {
+            maxPoints = totalPoints[sport];
+            chosenSport = sport;
+        }
     }
 
-    resultsContainer.innerHTML = `Votre sport est ${sport}.`;
+    resultsContainer.innerHTML = `Votre sport est ${chosenSport}.`;
 }
 
 buildQuiz();
